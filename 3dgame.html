@@ -106,7 +106,15 @@
 
 		wallAt(xFn, zFn, 0.01, -6.1, scene); 
 
+		var startTime;
+		var timer = document.querySelector('#timer');
+
 					scene.registerAfterRender(function() { 
+
+						if (keys.w) {
+							if(!startTime){ startTime = Date.now(); }
+						}
+
 			var vel = playerSphere.physicsImpostor.getLinearVelocity();
 			playerSphere.physicsImpostor.setLinearVelocity(vel.scale(.98)); 
 
@@ -146,6 +154,11 @@
 			if (playerSphere.position.y < -10) {
 				lost();
 
+			}
+
+			if(startTime) {
+				timer.innerHTML = ((Date.now() - startTime) / 
+					1000).toFixed(2).replace('.',':')
 			}
 
 			});	
@@ -264,6 +277,14 @@
 				touch-action: none;
 			} 
 
+			#timer {
+				position: absolute;
+				left:10px;
+				bottom:10px;
+				color:#ccc;
+				font: 52px sans-serif;
+			}
+
 		</style>
 
 	</head> 
@@ -273,6 +294,8 @@
 	<canvas id="renderCanvas"></canvas>
 
 	<div id= "target"
+
+	<div id="timer">00:00</div>
 
 	</body> 
 
