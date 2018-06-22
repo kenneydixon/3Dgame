@@ -129,6 +129,9 @@
 			var right = BABYLON.Vector3.TransformCoordinates(forward, BABYLON.Matrix.RotationY(Math.PI / 2));
 
 			if (keys.w) {
+
+			if(!startTime){ startTime = Date.now(); }
+
 			playerSphere.applyImpulse(forward, playerSphere.getAbsolutePosition());
 			}
 			if (keys.s) {
@@ -157,9 +160,10 @@
 			}
 
 			if(startTime) {
-				timer.innerHTML = ((Date.now() - startTime) / 
-					1000).toFixed(2).replace('.',':')
-			}
+			timer.innerHTML = ((Date.now() - startTime) / 
+				1000).toFixed(2).replace('.',':');
+} 
+			
 
 			});	
 
@@ -283,7 +287,7 @@
 				bottom:10px;
 				color:#ccc;
 				font: 52px sans-serif;
-			}
+				} 
 
 		</style>
 
@@ -292,8 +296,6 @@
 	<body onload= "start()"> 
 
 	<canvas id="renderCanvas"></canvas>
-
-	<div id= "target"
 
 	<div id="timer">00:00</div>
 
